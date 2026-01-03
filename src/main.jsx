@@ -8,7 +8,7 @@ import Profile from "./pages/Profile.Page.jsx";
 import AddApplication from "./pages/AddApplication.page.jsx";
 import { Provider } from "react-redux";
 import store from "./Redux/store.js";
-import JobDetail from "./components/JobDetail.jsx";
+import JobDetail from "./components/jobApplicationComponent/JobDetail.jsx";
 
 const Router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const Router = createBrowserRouter([
         element: <AddApplication />,
       },
       {
-        path: "job-detail",
+        path: "job-detail/:id",
         element: <JobDetail />,
       },
     ],

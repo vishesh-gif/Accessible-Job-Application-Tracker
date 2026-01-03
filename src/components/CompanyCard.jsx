@@ -1,5 +1,5 @@
 import React from "react";
-import SelectField from "./SelectField";
+import { Link } from "react-router-dom";
 
 const CompanyCard = ({ job, background }) => {
   const {
@@ -28,11 +28,12 @@ const CompanyCard = ({ job, background }) => {
       </div>
 
       <div className="text-center">
-        <button
-          className={`w-45 ${background} py-2 text-white font-semibold rounded `}
+        <Link
+          to={`job-detail/${id}`}
+          className={`w-45 ${background} py-2 text-white font-semibold rounded  px-2`}
         >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );

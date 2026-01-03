@@ -1,5 +1,6 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="h-24 flex justify-between  items-center">
@@ -7,7 +8,9 @@ const Navbar = () => {
         Job Application Tracker
       </h1>
       <div className="flex items-center gap-5 p-2">
-        <CgProfile className="text-3xl text-gray-500" />
+        <Link to="profile">
+          <CgProfile className="text-3xl text-gray-500" />
+        </Link>
         <p className="text-lg font-semibold text-[#3b4562]">John Doe</p>
       </div>
     </nav>

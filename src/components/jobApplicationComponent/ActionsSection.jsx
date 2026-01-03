@@ -4,9 +4,9 @@ import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { IoIosCalendar } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa6";
 
-const ActionsSection = () => {
+const ActionsSection = ({ className }) => {
   return (
-    <section className="flex flex-col gap-4">
+    <section className={`${className}"flex flex-col gap-4"`}>
       <div className="bg-[#f7f6fc] p-2 flex flex-col rounded shadow-2xl border-zinc-200 border">
         <h1 className="text-[22px] mb-2">Actions</h1>
         <div className="flex flex-col gap-5 ">

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import InputField from "../components/InputField";
-import SelectField from "../components/SelectField";
-import TextareaField from "../components/TextareaField";
+import InputField from "../utils/InputField";
+import SelectField from "../utils/SelectField";
+import TextareaField from "../utils/TextareaField";
 import { useDispatch } from "react-redux";
 import { addApplication } from "../Redux/applicationSlice";
 import toast, { Toaster } from "react-hot-toast";
-import DashboardBtn from "../components/DashboardBtn";
+import DashboardBtn from "../utils/DashboardBtn";
 
 const AddApplication = () => {
   const dispatch = useDispatch();
@@ -21,6 +20,10 @@ const AddApplication = () => {
     status: "Applied",
     notes: "",
     statusText: "",
+    maxSalary: "",
+    minSalary: "",
+    companyEmail: "",
+    companyWebsite: "",
   });
 
   const handleSubmit = (e) => {
@@ -49,6 +52,10 @@ const AddApplication = () => {
       status: "Applied",
       notes: "",
       statusText: "",
+      maxSalary: "",
+      minSalary: "",
+      companyEmail: "",
+      companyWebsite: "",
     });
   };
 
@@ -101,6 +108,24 @@ const AddApplication = () => {
                 value={formData.location}
                 required
               />
+              <InputField
+                label={"Company Email"}
+                type="email"
+                placeholder={"Company@email.com"}
+                name={"companyEmail"}
+                onChange={handleChange}
+                value={formData.companyEmail}
+                required
+              />
+              <InputField
+                label={"Company Website"}
+                type="text"
+                placeholder={"Company website"}
+                name={"companyWebsite"}
+                onChange={handleChange}
+                value={formData.companyWebsite}
+                required
+              />
             </div>
 
             {/* Right */}
@@ -113,10 +138,26 @@ const AddApplication = () => {
                 value={formData.appliedDate}
                 required
               />
+              <InputField
+                label="Min Salary (LPA)"
+                type="number"
+                name="minSalary"
+                onChange={handleChange}
+                value={formData.minSalary}
+              />
+
+              <InputField
+                label="Max Salary (LPA)"
+                type="number"
+                name="maxSalary"
+                onChange={handleChange}
+                value={formData.maxSalary}
+              />
 
               <InputField
                 label={"Company Logo URL (optional)"}
                 type="text"
+                name="imageUrl"
                 placeholder={"https://..."}
                 onChange={handleChange}
                 value={formData.imageUrl}

@@ -1,18 +1,25 @@
 import React from "react";
-import DashboardBtn from "./DashboardBtn";
+import DashboardBtn from "../../utils/DashboardBtn";
 import { MdDelete } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
 
 import RoleInfoSection from "./RoleInfoSection";
 import ActionsSection from "./ActionsSection";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 const JobDetail = () => {
+  const dataArray = useSelector((state) => state?.addApplication?.application);
+  const { id } = useParams();
+  const data = dataArray.find((arr) => arr.id == id);
+  console.log(data);
+
   return (
     <div className="mb-3 bg-white">
       <DashboardBtn />
       <section className="flex gap-5  mt-2 ">
-        <RoleInfoSection />
+        <RoleInfoSection className={"w-[70%]"} data={data} />
 
-        <ActionsSection />
+        <ActionsSection className={"w-[30%]"} />
       </section>
       <div className="flex justify-between my-4 bg-white">
         <button className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md">
