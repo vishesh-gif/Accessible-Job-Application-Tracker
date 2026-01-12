@@ -9,27 +9,48 @@ import AddApplication from "./pages/AddApplication.page.jsx";
 import { Provider } from "react-redux";
 import store from "./Redux/store.js";
 import JobDetail from "./components/jobApplicationComponent/JobDetail.jsx";
-
+import ProfileDashBoard from "./components/profileComponents/ProfileDashBoard.jsx";
+import AuthLayout from "./components/profileComponents/AuthLayout.jsx";
+import ProfileFormLayOut from "./components/profileComponents/ProfileFormLayOut.jsx";
+import CompleteProfile from "./components/profileComponents/CompleteProfile.jsx";
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      // 🌍 Public / open pages
       {
         index: true,
         element: <Dashboard />,
       },
       {
+        path: "job-detail/:id",
+        element: <JobDetail />,
+      },
+
+      // 👤 Profile pages (optional)
+      {
         path: "profile",
         element: <Profile />,
       },
       {
-        path: "add-application",
-        element: <AddApplication />,
+        path: "profile-form",
+        element: <ProfileFormLayOut />,
       },
       {
-        path: "job-detail/:id",
-        element: <JobDetail />,
+        path: "complete-profile",
+        element: <CompleteProfile />,
+      },
+
+      // 🧾 Complete profile (redirect target)
+      {
+        path: "profile-dashboard",
+        element: <ProfileDashBoard />,
+      },
+      // 🔒 Protected ONLY when creating application
+      {
+        path: "add-application",
+        element: <AddApplication />,
       },
     ],
   },

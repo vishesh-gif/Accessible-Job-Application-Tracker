@@ -11,7 +11,6 @@ const JobDetail = () => {
   const dataArray = useSelector((state) => state?.addApplication?.application);
   const { id } = useParams();
   const data = dataArray.find((arr) => arr.id == id);
-  console.log(data);
 
   return (
     <div className="mb-3 bg-white">
