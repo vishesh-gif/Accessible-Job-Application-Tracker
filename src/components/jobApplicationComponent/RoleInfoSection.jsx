@@ -9,7 +9,7 @@ import { GiEarthAsiaOceania } from "react-icons/gi";
 const RoleInfoSection = ({ data, className }) => {
   const {
     imageUrl,
-    company,
+    companyLogoUrl,
     role,
     status,
     appliedDate,
@@ -19,17 +19,24 @@ const RoleInfoSection = ({ data, className }) => {
     maxSalary,
     companyEmail,
     companyWebsite,
+    companyName,
   } = data || {};
+
+  const formatted = new Date(appliedDate).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
   return (
     <section
       className={`${className} "flex flex-col shadow-2xl rounded-md  bg-[#f7f6fc] p-4 gap-3 border-zinc-200 border"`}
     >
       <div className="flex items-center justify-between">
         <div className="p1">
-          <h1 className="text-3xl flex items-center gap-3 font-semibold mb-2">
-            <img className="w-20 rounded-2xl" src={imageUrl} alt="" />
-            {company}
-          </h1>
+          {companyLogoUrl ?
+            <img src={companyLogoUrl} className="w-20 rounded-2xl" alt="" />
+          : <h1 className="text-3xl mb-2 font-semibold">{companyName}</h1>}
+
           <h2 className="text-lg font-semibold">{role}</h2>
         </div>
         <div>
@@ -44,20 +51,23 @@ const RoleInfoSection = ({ data, className }) => {
             <span>
               <MdDateRange />
             </span>
-            Applied Date : {appliedDate}
+            Applied Date :{" "}
+            <span className="text-black font-semibold">{formatted}</span>
           </li>
           <li className="flex gap-2 items-center px-2 ">
             {" "}
             <span>
               <MdLocationOn />
             </span>{" "}
-            Location : {location}
+            Location :{" "}
+            <span className="text-black font-semibold">{location}</span>
           </li>
           <li className="flex gap-2 items-center px-2 ">
             <span>
               <GiEarthAsiaOceania />
             </span>{" "}
-            Website : {companyWebsite}
+            Website :{" "}
+            <span className="text-black font-semibold">{companyWebsite}</span>
           </li>
           <li className="flex gap-2 items-center px-2 ">
             <span>

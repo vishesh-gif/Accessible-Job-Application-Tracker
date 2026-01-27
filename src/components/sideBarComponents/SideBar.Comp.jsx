@@ -5,7 +5,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import SidebarFilterComponent from "./SidebarFilterComponent";
 import SidebarSearchComponent from "./SidebarSearchComponent";
 import SidebarLinksBtn from "./SidebarLinkBtn";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const SideBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,22 +38,19 @@ const SideBar = () => {
         >
           + Add Application
         </button>
-        <Toaster />
       </div>
 
       <hr className="border-0 border-t border-[#4571b8]" />
-      {location.pathname == "/" ? (
+      {location.pathname == "/" ?
         <div className="flex flex-col sm:gap-5 md:gap-7">
-          <SidebarFilterComponent />
+          {/* <SidebarFilterComponent /> */}
 
-          <hr className="border-0 border-t border-[#4571b8]" />
+          {/* <hr className="border-0 border-t border-[#4571b8]" /> */}
           <SidebarSearchComponent />
           <hr className="border-0 border-t border-[#4571b8]" />
           <SidebarLinksBtn />
         </div>
-      ) : (
-        <SidebarLinksBtn />
-      )}
+      : <SidebarLinksBtn />}
     </div>
   );
 };

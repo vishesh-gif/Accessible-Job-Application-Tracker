@@ -6,6 +6,7 @@ import { logIn } from "./Redux/profileSlice";
 import auth from "./appwrite/auth";
 import profileService from "./appwrite/profile";
 import storageService from "./appwrite/storage";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const App = () => {
   return (
     <>
       <div className="w-full flex flex-row h-full">
+        <Toaster />
         <section className="w-[20%] min-h-screen bg-[#2561bb] text-white">
           <SideBar />
         </section>

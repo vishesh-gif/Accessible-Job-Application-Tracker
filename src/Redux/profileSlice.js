@@ -12,7 +12,6 @@ const profileSlice = createSlice({
     logIn: (state, action) => {
       state.logInStatus = true;
       state.userData = action.payload;
-      console.log(action.payload);
     },
     logOut: (state) => {
       state.logInStatus = false;

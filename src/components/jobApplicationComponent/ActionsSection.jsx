@@ -3,8 +3,11 @@ import { MdBarcodeReader } from "react-icons/md";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { IoIosCalendar } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const ActionsSection = ({ className }) => {
+  const user = useSelector((state) => state.profileStatus?.userData);
+  console.log(user);
   return (
     <section className={`${className}"flex flex-col gap-4"`}>
       <div className="bg-[#f7f6fc] p-2 flex flex-col rounded shadow-2xl border-zinc-200 border">
@@ -43,7 +46,7 @@ const ActionsSection = ({ className }) => {
             <span>
               <FaEnvelope />
             </span>{" "}
-            johndoe@gmail.com
+            {user?.user?.email}
           </li>
           <hr className="border-0 border-t my-2 border-[#e0e1e2]" />
           <li className="flex items-center gap-1 font-semibold text-[#575e79]">

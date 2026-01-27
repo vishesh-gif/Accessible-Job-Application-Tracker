@@ -1,7 +1,7 @@
 import React from "react";
-import CompanyCard from "./CompanyCard";
+import JobCard from "./JobCard";
 
-const StatusCard = ({ item, jobs }) => {
+const JobRow = ({ item, jobs }) => {
   const { title, backGround } = item;
   return (
     <div className="w-52">
@@ -12,11 +12,11 @@ const StatusCard = ({ item, jobs }) => {
       </div>
       <div>
         {jobs.map((job) => (
-          <CompanyCard key={job.id} job={job} background={backGround} />
+          <JobCard key={job.$id} job={job} background={backGround} />
         ))}
       </div>
     </div>
   );
 };
 
-export default StatusCard;
+export default JobRow;

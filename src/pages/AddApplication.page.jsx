@@ -1,67 +1,49 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import InputField from "../utils/InputField";
 import SelectField from "../utils/SelectField";
 import TextareaField from "../utils/TextareaField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addApplication } from "../Redux/applicationSlice";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import DashboardBtn from "../utils/DashboardBtn";
+import { useForm } from "react-hook-form";
+import applicationService from "../appwrite/application";
 
 const AddApplication = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    id: crypto.randomUUID(),
-    company: "",
-    role: "",
-    location: "",
-    appliedDate: "",
-    imageUrl: "",
-    status: "Applied",
-    notes: "",
-    statusText: "",
-    maxSalary: "",
-    minSalary: "",
-    companyEmail: "",
-    companyWebsite: "",
-  });
+  const userId = useSelector(
+    (state) => state.profileStatus?.userData?.user.$id,
+  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const statusMap = {
-      Applied: "Applied",
-      Interview: "Interviewing",
-      Offer: "Offer Received",
-      Rejected: "Rejected",
-    };
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
 
-    const addData = {
-      ...formData,
-      id: crypto.randomUUID(),
-      statusText: statusMap[formData.status] || "Applied",
-    };
-
-    dispatch(addApplication(addData));
-    toast("Application created");
-    setFormData({
-      company: "",
-      role: "",
-      location: "",
-      appliedDate: "",
-      imageUrl: "",
-      status: "Applied",
-      notes: "",
-      statusText: "",
-      maxSalary: "",
-      minSalary: "",
-      companyEmail: "",
-      companyWebsite: "",
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      if (!userId) {
+        toast.error("Please Login");
+        return;
+      }
+      const application = await applicationService.createApplication(
+        userId,
+        data,
+      );
+      if (application) {
+        const response = await applicationService.getApplications(userId);
+        if (response) {
+          dispatch(addApplication(response.documents));
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -76,27 +58,26 @@ const AddApplication = () => {
           Add Job Application
         </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
           {/* Section 1 */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left */}
             <div className="flex flex-col gap-5">
               <InputField
                 label={"Company Name"}
-                type="text"
                 placeholder={"e.g. Google"}
-                name={"company"}
-                onChange={handleChange}
-                value={formData.company}
+                {...register("companyName", {
+                  required: "companyName is required",
+                })}
                 required
               />
               <InputField
                 label={"Job Title"}
                 type="text"
                 placeholder={"Frontend Developer"}
-                name={"role"}
-                onChange={handleChange}
-                value={formData.role}
+                {...register("role", {
+                  required: "role is required",
+                })}
                 required
               />
               <InputField
@@ -104,26 +85,23 @@ const AddApplication = () => {
                 type="text"
                 placeholder={"Indore / Remote"}
                 name={"location"}
-                onChange={handleChange}
-                value={formData.location}
+                {...register("location", {
+                  required: "location is required",
+                })}
                 required
               />
               <InputField
                 label={"Company Email"}
                 type="email"
                 placeholder={"Company@email.com"}
-                name={"companyEmail"}
-                onChange={handleChange}
-                value={formData.companyEmail}
+                {...register("companyEmail")}
                 required
               />
               <InputField
                 label={"Company Website"}
                 type="text"
                 placeholder={"Company website"}
-                name={"companyWebsite"}
-                onChange={handleChange}
-                value={formData.companyWebsite}
+                {...register("companyWebsite")}
                 required
               />
             </div>
@@ -133,42 +111,26 @@ const AddApplication = () => {
               <InputField
                 label={"Applied Date"}
                 type="date"
-                name={"appliedDate"}
-                onChange={handleChange}
-                value={formData.appliedDate}
+                {...register("appliedDate", {
+                  required: "appliedDate is required",
+                })}
                 required
               />
-              <InputField
-                label="Min Salary (LPA)"
-                type="number"
-                name="minSalary"
-                onChange={handleChange}
-                value={formData.minSalary}
-              />
+              <InputField label="Min Salary (LPA)" {...register("minSalary")} />
 
-              <InputField
-                label="Max Salary (LPA)"
-                type="number"
-                name="maxSalary"
-                onChange={handleChange}
-                value={formData.maxSalary}
-              />
+              <InputField label="Max Salary (LPA)" {...register("maxSalary")} />
 
               <InputField
                 label={"Company Logo URL (optional)"}
                 type="text"
-                name="imageUrl"
-                placeholder={"https://..."}
-                onChange={handleChange}
-                value={formData.imageUrl}
+                {...register("companyLogoUrl")}
               />
               <SelectField
                 label={"Application Status"}
                 options={["Applied", "Interview", "Offer", "Rejected"]}
-                name={"status"}
-                onChange={handleChange}
-                value={formData.status}
-                required
+                {...register("status", {
+                  required: "applicationStatus is required",
+                })}
               />
             </div>
           </section>
@@ -177,9 +139,7 @@ const AddApplication = () => {
           <TextareaField
             label={"Notes (optional)"}
             placeholder={"ny extra details, referral info, interview notes..."}
-            name={"notes"}
-            onChange={handleChange}
-            value={formData.notes}
+            {...register("notes")}
           />
 
           {/* Actions */}
@@ -194,9 +154,8 @@ const AddApplication = () => {
               type="submit"
               className="px-6 py-2 rounded-md bg-[#1153c1] text-white font-medium hover:bg-[#0d44a0]"
             >
-              Save Application
+              {!isSubmitting ? "Save Application" : "Saving Application..."}
             </button>
-            <Toaster />
           </div>
         </form>
       </div>

@@ -72,7 +72,6 @@ const LogInForm = () => {
             <MdChevronRight />
           </span>
         </button>
-        <Toaster />
       </div>
     </form>
   );

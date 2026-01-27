@@ -10,8 +10,8 @@ const ProfileDashBoard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const userInfo = useSelector((state) => state.profileStatus?.userData);
-  console.log(userInfo);
+  const userInfo = useSelector((state) => state.profileStatus);
+  console.log(userInfo.userData);
 
   const signOut = async () => {
     try {
@@ -32,7 +32,7 @@ const ProfileDashBoard = () => {
     );
   }
 
-  const { user, userImg, userData } = userInfo || {};
+  const { user, userImg, userData } = userInfo.userData || {};
 
   return (
     <section className="max-w-4xl mx-auto p-6 space-y-6">

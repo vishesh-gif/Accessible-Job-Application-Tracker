@@ -13,6 +13,7 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
+
   const onSubmit = async (data) => {
     try {
       const account = await auth.createAccount(data);
@@ -75,7 +76,6 @@ const SignUpForm = () => {
             <MdChevronRight />
           </span>
         </button>
-        <Toaster />
       </div>
     </form>
   );
