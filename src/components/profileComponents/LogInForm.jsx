@@ -3,12 +3,11 @@ import InputField from "../../utils/InputField";
 import { useForm } from "react-hook-form";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import auth from "../../appwrite/auth";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../Redux/profileSlice";
 import toast, { Toaster } from "react-hot-toast";
 const LogInForm = () => {
-  const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {

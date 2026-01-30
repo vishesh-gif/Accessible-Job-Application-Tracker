@@ -10,7 +10,6 @@ import { Provider } from "react-redux";
 import store from "./Redux/store.js";
 import JobDetail from "./components/jobApplicationComponent/JobDetail.jsx";
 import ProfileDashBoard from "./components/profileComponents/ProfileDashBoard.jsx";
-import AuthLayout from "./components/profileComponents/AuthLayout.jsx";
 import ProfileFormLayOut from "./components/profileComponents/ProfileFormLayOut.jsx";
 import CompleteProfile from "./components/profileComponents/CompleteProfile.jsx";
 const Router = createBrowserRouter([
@@ -63,5 +62,5 @@ createRoot(document.getElementById("root")).render(
         <App />
       </StrictMode>
     </RouterProvider>
-  </Provider>
+  </Provider>,
 );

@@ -14,6 +14,7 @@ const JobDetail = () => {
   const { id } = useParams();
   const data = dataArray.find((arr) => arr.$id == id);
   const navigate = useNavigate();
+
   const handleDeleteApplication = async (id) => {
     try {
       const response = await applicationService.deleteApplication(id);
@@ -36,7 +37,11 @@ const JobDetail = () => {
       <section className="flex gap-5  mt-2 ">
         <RoleInfoSection className={"w-[70%]"} data={data} />
 
-        <ActionsSection className={"w-[30%]"} />
+        <ActionsSection
+          documentId={id}
+          applicationData={data}
+          className={"w-[30%]"}
+        />
       </section>
       <div className="flex justify-between my-4 bg-white">
         <button className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md">

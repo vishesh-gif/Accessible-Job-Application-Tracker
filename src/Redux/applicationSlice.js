@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   application: [],
   filteredApplications: [],
+  reFetch: false,
 };
 const applicationSlice = createSlice({
   name: "application",
@@ -11,6 +12,9 @@ const applicationSlice = createSlice({
     addApplication: (state, action) => {
       state.application = action.payload;
       state.filteredApplications = state.application;
+    },
+    removeAll: (state, action) => {
+      state.application = [];
     },
     deleteApplication: (state, action) => {
       state.application =
@@ -28,10 +32,18 @@ const applicationSlice = createSlice({
         item.companyName.toLowerCase().includes(query),
       );
     },
+    moveToRejected: (state) => {
+      state.reFetch = !state.reFetch;
+    },
   },
 });
 
-export const { addApplication, deleteApplication, searchApplication } =
-  applicationSlice.actions;
+export const {
+  addApplication,
+  deleteApplication,
+  searchApplication,
+  removeAll,
+  moveToRejected,
+} = applicationSlice.actions;
 
 export default applicationSlice.reducer;

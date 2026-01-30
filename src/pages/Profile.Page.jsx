@@ -11,12 +11,10 @@ const Profile = () => {
   return (
     <>
       <ProfileHeader headerText={status ? "Your Profile" : "Create Profile"} />
-      {status ? (
+      {status ?
         // <AuthLayout />
         <ProfileDashBoard />
-      ) : (
-        <ProfileFormLayOut />
-      )}
+      : <ProfileFormLayOut />}
     </>
   );
 };

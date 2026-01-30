@@ -4,6 +4,7 @@ import auth from "../../appwrite/auth";
 import { logIn, logOut } from "../../Redux/profileSlice";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { removeAll } from "../../Redux/applicationSlice";
 
 const ProfileDashBoard = () => {
   const dispatch = useDispatch();
@@ -11,11 +12,11 @@ const ProfileDashBoard = () => {
   const [loading, setLoading] = useState(true);
 
   const userInfo = useSelector((state) => state.profileStatus);
-  console.log(userInfo.userData);
 
   const signOut = async () => {
     try {
       await auth.logout();
+      dispatch(removeAll());
       dispatch(logOut());
       toast.success("Logged out successfully");
       navigate("/");
@@ -36,8 +37,6 @@ const ProfileDashBoard = () => {
 
   return (
     <section className="max-w-4xl mx-auto p-6 space-y-6">
-      <Toaster position="top-right" />
-
       {/* Profile Header */}
       <div className="flex flex-col md:flex-row items-center justify-between bg-white rounded-lg shadow-sm border p-6 gap-6">
         <div className="flex flex-col md:flex-row items-center gap-5">

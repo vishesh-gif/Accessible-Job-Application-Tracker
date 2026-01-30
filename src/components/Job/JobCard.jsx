@@ -11,7 +11,6 @@ const JobCard = ({ job, background }) => {
     location,
     companyLogoUrl,
   } = job;
-  console.log(job);
 
   const formatted = new Date(appliedDate).toLocaleDateString("en-IN", {
     day: "2-digit",

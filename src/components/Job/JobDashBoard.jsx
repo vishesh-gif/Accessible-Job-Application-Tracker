@@ -6,7 +6,6 @@ const JobDashBoard = () => {
   const { filteredApplications, application } = useSelector(
     (state) => state.addApplication,
   );
-
   const statusCardItem = [
     { title: "Applied", backGround: "bg-[#7babea]" },
     { title: "Interview", backGround: "bg-[#bfc44c]" },

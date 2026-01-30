@@ -11,6 +11,9 @@ const Home = () => {
   const userId = useSelector(
     (state) => state.profileStatus?.userData?.user.$id,
   );
+  const applicationUpdate = useSelector(
+    (state) => state.addApplication.reFetch,
+  );
 
   const getApplications = async () => {
     try {
@@ -26,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     getApplications();
-  }, [userId]);
+  }, [userId, applicationUpdate]);
   return (
     <div className="w-full flex flex-col sm:px-8">
       <section className="">
