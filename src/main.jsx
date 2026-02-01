@@ -12,6 +12,8 @@ import JobDetail from "./components/jobApplicationComponent/JobDetail.jsx";
 import ProfileDashBoard from "./components/profileComponents/ProfileDashBoard.jsx";
 import ProfileFormLayOut from "./components/profileComponents/ProfileFormLayOut.jsx";
 import CompleteProfile from "./components/profileComponents/CompleteProfile.jsx";
+import EditJobForm from "./components/jobApplicationComponent/EditJobForm.jsx";
+import EditJobPage from "./pages/EditJobPage.jsx";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +52,10 @@ const Router = createBrowserRouter([
       {
         path: "add-application",
         element: <AddApplication />,
+      },
+      {
+        path: "editJobForm",
+        element: <EditJobPage />,
       },
     ],
   },

@@ -35,6 +35,9 @@ const applicationSlice = createSlice({
     moveToRejected: (state) => {
       state.reFetch = !state.reFetch;
     },
+    upDateApplication: (state) => {
+      state.reFetch = !state.reFetch;
+    },
   },
 });
 
@@ -44,6 +47,7 @@ export const {
   searchApplication,
   removeAll,
   moveToRejected,
+  upDateApplication,
 } = applicationSlice.actions;
 
 export default applicationSlice.reducer;

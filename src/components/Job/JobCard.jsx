@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import JobCardImg from "./JobCardImg";
 
 const JobCard = ({ job, background }) => {
-  const {
-    $id,
-    companyName,
-    role,
-    status,
-    appliedDate,
-    location,
-    companyLogoUrl,
-  } = job;
+  const { $id, status, appliedDate, location } = job;
 
   const formatted = new Date(appliedDate).toLocaleDateString("en-IN", {
     day: "2-digit",
@@ -19,16 +12,7 @@ const JobCard = ({ job, background }) => {
   });
   return (
     <div className="bg-white p-3 mb-3 rounded shadow-2xl gap-3 flex flex-col">
-      <div>
-        <div className="flex items-center gap-3">
-          {companyLogoUrl ?
-            <img src={companyLogoUrl} className="w-12" alt="" />
-          : <h1 className="text-2xl font-semibold">{companyName}</h1>}
-        </div>
-        <h4 className="font-bold text-sm text-black mb-1">{role}</h4>
-        <hr className="border-0 border-t border-[#c1c7d1] " />
-      </div>
-
+      <JobCardImg job={job} />
       <div className="flex flex-col text-gray-600">
         <h4 className="text-sm ">
           {status} : <span>{formatted}</span>

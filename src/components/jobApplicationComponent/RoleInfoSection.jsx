@@ -34,7 +34,7 @@ const RoleInfoSection = ({ data, className }) => {
       <div className="flex items-center justify-between">
         <div className="p1">
           {companyLogoUrl ?
-            <img src={companyLogoUrl} className="w-20 rounded-2xl" alt="" />
+            <img src={companyLogoUrl} className="w-20" alt="" />
           : <h1 className="text-3xl mb-2 font-semibold">{companyName}</h1>}
 
           <h2 className="text-lg font-semibold">{role}</h2>

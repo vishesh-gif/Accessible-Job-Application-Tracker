@@ -4,7 +4,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import RoleInfoSection from "./RoleInfoSection";
 import ActionsSection from "./ActionsSection";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import applicationService from "../../appwrite/application";
 import { deleteApplication } from "../../Redux/applicationSlice";
 import toast from "react-hot-toast";
@@ -44,7 +44,14 @@ const JobDetail = () => {
         />
       </section>
       <div className="flex justify-between my-4 bg-white">
-        <button className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md">
+        <button
+          onClick={() =>
+            navigate("/editJobForm", {
+              state: { jobData: data },
+            })
+          }
+          className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md"
+        >
           <span>
             <FaPencilAlt />
           </span>{" "}
