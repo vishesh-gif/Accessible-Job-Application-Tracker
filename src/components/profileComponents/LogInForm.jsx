@@ -66,7 +66,7 @@ const LogInForm = () => {
           type="submit"
           className="flex gap-2 items-center bg-[#3873d4] text-white border border-[#d2d5e7] rounded px-4 text-sm cursor-pointer"
         >
-          {isSubmitting ? "Logining..." : "Create Profile"}
+          {isSubmitting ? "Logining..." : "Login to Profile"}
           <span>
             <MdChevronRight />
           </span>
