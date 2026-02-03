@@ -31,12 +31,16 @@ const Home = () => {
     getApplications();
   }, [userId, applicationUpdate]);
   return (
-    <div className="w-full flex flex-col sm:px-8">
-      <section className="">
+    <div className="w-full min-h-screen flex flex-col px-3 sm:px-6 lg:px-8">
+      {/* Navbar */}
+      <section>
         <Navbar />
       </section>
-      <hr className="border-0 border-t border-[#e0e1e2]" />
-      <section className="mt-8 ml-2 p-2 bg-[#f5f6fb] rounded">
+
+      <hr className="my-3 border-0 border-t border-[#e0e1e2]" />
+
+      {/* Main Content */}
+      <section className="mt-4 sm:mt-6 bg-[#f5f6fb] rounded-md p-3 sm:p-4 lg:p-6">
         <Outlet />
       </section>
     </div>

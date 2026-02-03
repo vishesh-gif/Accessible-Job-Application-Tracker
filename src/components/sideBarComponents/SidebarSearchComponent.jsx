@@ -3,7 +3,7 @@ import { IoSearch } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { searchApplication } from "../../Redux/applicationSlice";
 
-const SidebarSearchComponent = () => {
+const SidebarSearchComponent = ({ className }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const handleSearch = () => {
@@ -13,21 +13,22 @@ const SidebarSearchComponent = () => {
     handleSearch();
   }, [input, setInput]);
   return (
-    <div className="flex items-center text-center sm:h-6 md:h-10">
-      <label
-        className="bg-white text-black sm:py-1 lg:py-3 rounded-l sm:text-sm md:text-md sm:px-2 md:px-1.5 lg:px-3 h-full"
-        htmlFor="input"
-      >
-        <IoSearch />
-      </label>
+    <div className="flex items-center w-full h-9 sm:h-10 lg:h-12">
+      {/* Input */}
       <input
         onChange={(e) => setInput(e.target.value)}
-        className="bg-white w-full placeholder:text-gray-400 md:placeholder:text-md sm:placeholder:text-xs lg:placeholder:text-md rounded-l-0
-              rounded-r sm:py-1 md:py-2 outline-0 
-              text-black h-full
-              "
-        placeholder="Search by company Name"
         type="text"
+        placeholder="Search by company name"
+        className={`${className} w-full
+      bg-white text-black
+      px-3 py-2
+      rounded
+      outline-none 
+      text-xs sm:text-sm lg:text-base
+      placeholder:text-gray-400
+      focus:ring-2 focus:ring-[#2d73df]
+      transition
+    `}
       />
     </div>
   );

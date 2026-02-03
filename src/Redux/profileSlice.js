@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   logInStatus: false,
   userData: null,
+  sideBarWidth: false,
 };
 
 const profileSlice = createSlice({
@@ -17,9 +18,12 @@ const profileSlice = createSlice({
       state.logInStatus = false;
       state.userData = null;
     },
+    SideBarLayout: (state) => {
+      state.sideBarWidth = !state.sideBarWidth;
+    },
   },
 });
 
-export const { logIn, logOut } = profileSlice.actions;
+export const { logIn, logOut, SideBarLayout } = profileSlice.actions;
 
 export default profileSlice.reducer;

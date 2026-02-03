@@ -32,38 +32,39 @@ const JobDetail = () => {
   };
 
   return (
-    <div className="mb-3 bg-white">
+    <div className="mb-3 bg-white px-3 sm:px-0">
       <DashboardBtn />
-      <section className="flex gap-5  mt-2 ">
-        <RoleInfoSection className={"w-[70%]"} data={data} />
+
+      {/* Main Content */}
+      <section className="flex flex-col lg:flex-row gap-4 lg:gap-5 mt-3">
+        <RoleInfoSection className="w-full lg:w-[70%]" data={data} />
 
         <ActionsSection
           documentId={id}
           applicationData={data}
-          className={"w-[30%]"}
+          className="w-full lg:w-[30%]"
         />
       </section>
-      <div className="flex justify-between my-4 bg-white">
+
+      {/* Actions */}
+      <div className="flex flex-col sm:flex-row justify-between gap-3 my-4">
         <button
           onClick={() =>
             navigate("/editJobForm", {
               state: { jobData: data },
             })
           }
-          className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md"
+          className="flex items-center justify-center gap-2 text-sm sm:text-md font-semibold px-4 py-2 bg-[#e1e5f2] text-[#242f5b] rounded-md w-full sm:w-auto"
         >
-          <span>
-            <FaPencilAlt />
-          </span>{" "}
+          <FaPencilAlt />
           Edit Job
         </button>
+
         <button
-          onClick={() => handleClick()}
-          className="flex items-center gap-2 text-md font-semibold px-3 py-2 bg-[#e15b5f] text-white rounded-md"
+          onClick={handleClick}
+          className="flex items-center justify-center gap-2 text-sm sm:text-md font-semibold px-4 py-2 bg-[#e15b5f] text-white rounded-md w-full sm:w-auto"
         >
-          <span>
-            <MdDelete />{" "}
-          </span>{" "}
+          <MdDelete />
           Delete Job
         </button>
       </div>

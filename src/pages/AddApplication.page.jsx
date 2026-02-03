@@ -47,86 +47,86 @@ const AddApplication = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto flex flex-col ">
+    <div className="max-w-5xl mx-auto flex flex-col px-3 sm:px-4 lg:px-0">
       {/* Header */}
-
       <DashboardBtn />
 
       {/* Main Card */}
-      <div className="bg-white shadow-sm  p-6">
-        <h1 className="text-2xl font-semibold mb-6 text-gray-800">
+      <div className="bg-white shadow-sm rounded-md p-4 sm:p-6">
+        <h1 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
           Add Job Application
         </h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-6 sm:gap-8"
+        >
           {/* Section 1 */}
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {/* Left */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4 sm:gap-5">
               <InputField
-                label={"Company Name"}
-                placeholder={"e.g. Google"}
+                label="Company Name"
+                placeholder="e.g. Google"
                 {...register("companyName", {
                   required: "companyName is required",
                 })}
                 required
               />
+
               <InputField
-                label={"Job Title"}
-                type="text"
-                placeholder={"Frontend Developer"}
+                label="Job Title"
+                placeholder="Frontend Developer"
                 {...register("role", {
                   required: "role is required",
                 })}
                 required
               />
+
               <InputField
-                label={"Location"}
-                type="text"
-                placeholder={"Indore / Remote"}
-                name={"location"}
+                label="Location"
+                placeholder="Indore / Remote"
                 {...register("location", {
                   required: "location is required",
                 })}
                 required
               />
+
               <InputField
-                label={"Company Email"}
+                label="Company Email"
                 type="email"
-                placeholder={"Company@email.com"}
+                placeholder="company@email.com"
                 {...register("companyEmail")}
-                required
               />
+
               <InputField
-                label={"Company Website"}
-                type="text"
-                placeholder={"Company website"}
+                label="Company Website"
+                placeholder="Company website"
                 {...register("companyWebsite")}
-                required
               />
             </div>
 
             {/* Right */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4 sm:gap-5">
               <InputField
-                label={"Applied Date"}
+                label="Applied Date"
                 type="date"
                 {...register("appliedDate", {
                   required: "appliedDate is required",
                 })}
                 required
               />
-              <InputField label="Min Salary (LPA)" {...register("minSalary")} />
 
+              <InputField label="Min Salary (LPA)" {...register("minSalary")} />
               <InputField label="Max Salary (LPA)" {...register("maxSalary")} />
 
               <InputField
-                label={"Company Logo URL (optional)"}
-                type="text"
+                label="Company Logo URL (optional)"
                 {...register("companyLogoUrl")}
               />
+
               <SelectField
-                label={"Application Status"}
+                label="Application Status"
                 options={["Applied", "Interview", "Offer", "Rejected"]}
                 {...register("status", {
                   required: "applicationStatus is required",
@@ -137,22 +137,23 @@ const AddApplication = () => {
 
           {/* Section 2 */}
           <TextareaField
-            label={"Notes (optional)"}
-            placeholder={"ny extra details, referral info, interview notes..."}
+            label="Notes (optional)"
+            placeholder="Any extra details, referral info, interview notes..."
             {...register("notes")}
           />
 
           {/* Actions */}
-          <div className="flex justify-end gap-4">
+          <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
             <NavLink
               to="/"
-              className="px-5 py-2 rounded-md border text-gray-600 hover:bg-gray-100"
+              className="w-full sm:w-auto text-center px-5 py-2 rounded-md border text-gray-600 hover:bg-gray-100"
             >
               Cancel
             </NavLink>
+
             <button
               type="submit"
-              className="px-6 py-2 rounded-md bg-[#1153c1] text-white font-medium hover:bg-[#0d44a0]"
+              className="w-full sm:w-auto px-6 py-2 rounded-md bg-[#1153c1] text-white font-medium hover:bg-[#0d44a0]"
             >
               {!isSubmitting ? "Save Application" : "Saving Application..."}
             </button>

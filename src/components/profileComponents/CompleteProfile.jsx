@@ -27,7 +27,7 @@ const CompleteProfile = () => {
       let avatarId = null;
       if (data.profileImage[0]) {
         const uploaded = await storageService.uploadProfileImage(
-          data.profileImage[0]
+          data.profileImage[0],
         );
         avatarId = uploaded.$id;
       }
@@ -48,27 +48,30 @@ const CompleteProfile = () => {
 
   return (
     <form
-      className="flex flex-col w-full mb-3 "
+      className="flex flex-col w-full max-w-2xl mx-auto px-4 sm:px-6 mb-3"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <section className="flex items-center gap-4 mb-6">
-        <div className="rounded-full border-2 border-dashed border-gray-300">
+      {/* Profile Image Section */}
+      <section className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6">
+        <div className="rounded-full border-2 border-dashed border-gray-300 p-1">
           <img
-            className="w-30 rounded-full"
+            className="w-24 h-24 sm:w-28 sm:h-28 md:w-30 md:h-30 rounded-full object-cover"
             src={
               preview ||
               "https://www.shutterstock.com/image-vector/default-avatar-social-media-display-600nw-2632690107.jpg"
             }
-            alt=""
+            alt="Profile Preview"
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <h1 className="text-lg font-semibold text-gray-700">
+
+        <div className="flex flex-col gap-2 text-center sm:text-left">
+          <h1 className="text-base sm:text-lg font-semibold text-gray-700">
             Upload Profile Photo
           </h1>
+
           <InputField
-            className={"bg-[#3873d4] text-white px-2 py-1 rounded"}
-            type={"file"}
+            className="bg-[#3873d4] text-white px-3 py-1 rounded text-sm"
+            type="file"
             accept="image/*"
             {...register("profileImage", {
               onChange: (e) => {
@@ -83,35 +86,42 @@ const CompleteProfile = () => {
           <p className="text-xs text-gray-400">JPG or PNG, Max 5MB.</p>
         </div>
       </section>
+
+      {/* Location */}
       <InputField
         label="Location"
-        placeholder="Enter your Location"
+        placeholder="Enter your location"
         {...register("location", {
           required: "Location is required",
         })}
       />
+
+      {/* Bio */}
       <TextareaField
         {...register("bio")}
         label="Bio"
-        placeholder="Enter Something About You"
+        placeholder="Enter something about you"
       />
-      <div className="flex justify-between mt-2">
+
+      {/* Actions */}
+      <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
         <button
           type="button"
-          className="flex items-center bg-[#dee1f2] border gap-2 border-[#d2d5e7] rounded px-4 py-1 text-sm"
+          className="w-full sm:w-auto flex justify-center items-center bg-[#dee1f2] border border-[#d2d5e7] rounded px-4 py-2 text-sm"
         >
-          <span></span>
           Cancel
         </button>
+
         <button
           type="submit"
-          className="flex gap-2 items-center bg-[#3873d4] text-white border border-[#d2d5e7] rounded px-4 text-sm"
+          className="w-full sm:w-auto flex justify-center items-center bg-[#3873d4] text-white border border-[#d2d5e7] rounded px-4 py-2 text-sm"
+          disabled={isSubmitting}
         >
-          <span></span>
           {isSubmitting ? "...Completing profile" : "Complete Profile"}
         </button>
-        <Toaster />
       </div>
+
+      <Toaster />
     </form>
   );
 };

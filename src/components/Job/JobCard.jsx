@@ -11,19 +11,22 @@ const JobCard = ({ job, background }) => {
     year: "numeric",
   });
   return (
-    <div className="bg-white p-3 mb-3 rounded shadow-2xl gap-3 flex flex-col">
+    <div className="bg-white p-3 sm:p-4 mb-3 rounded-lg shadow-md flex flex-col gap-3">
       <JobCardImg job={job} />
-      <div className="flex flex-col text-gray-600">
-        <h4 className="text-sm ">
+
+      {/* Meta Info */}
+      <div className="flex flex-col text-gray-600 text-center sm:text-left">
+        <h4 className="text-xs sm:text-sm">
           {status} : <span>{formatted}</span>
         </h4>
-        <p className="text-xs font-semibold"> | {location}</p>
+        <p className="text-xs font-semibold">{location}</p>
       </div>
 
-      <div className="text-center">
+      {/* Action */}
+      <div className="mt-1">
         <Link
           to={`job-detail/${$id}`}
-          className={`w-45 ${background} py-2 text-white font-semibold rounded  px-2`}
+          className={`${background} block w-full text-center py-2 text-sm sm:text-base text-white font-semibold rounded-md`}
         >
           View Details
         </Link>

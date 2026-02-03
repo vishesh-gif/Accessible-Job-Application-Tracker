@@ -6,6 +6,10 @@ const JobDashBoard = () => {
   const { filteredApplications, application } = useSelector(
     (state) => state.addApplication,
   );
+
+  const sourceData =
+    filteredApplications.length > 0 ? filteredApplications : application;
+
   const statusCardItem = [
     { title: "Applied", backGround: "bg-[#7babea]" },
     { title: "Interview", backGround: "bg-[#bfc44c]" },
@@ -14,12 +18,15 @@ const JobDashBoard = () => {
   ];
 
   return (
-    <div className="flex overflow-x-scroll gap-6">
-      {statusCardItem.map((item) => {
-        const filterJob = filteredApplications.filter(
-          (job) => job.status === item.title,
+    <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-2 snap-x snap-mandatory">
+      {statusCardItem.map((item, index) => {
+        const filterJob = sourceData.filter((job) => job.status === item.title);
+
+        return (
+          <div key={index} className="snap-start shrink-0">
+            <JobRow item={item} jobs={filterJob} />
+          </div>
         );
-        return <JobRow key={filterJob.$id} item={item} jobs={filterJob} />;
       })}
     </div>
   );
