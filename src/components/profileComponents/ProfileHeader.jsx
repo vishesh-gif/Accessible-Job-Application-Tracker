@@ -11,9 +11,6 @@ const ProfileHeader = ({ headerText, headerLogo }) => {
         </span>{" "}
         {headerText}
       </h1>
-      <p className="text-sm py-4 bg-white px-1 text-gray-500">
-        Fill out the information below to create your profile.
-      </p>
     </div>
   );
 };

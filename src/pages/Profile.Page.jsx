@@ -10,7 +10,6 @@ const Profile = () => {
 
   return (
     <>
-      <ProfileHeader headerText={status ? "Your Profile" : "Create Profile"} />
       {status ?
         // <AuthLayout />
         <ProfileDashBoard />

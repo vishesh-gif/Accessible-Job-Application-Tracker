@@ -43,8 +43,8 @@ const LogInForm = () => {
 
       <InputField
         type="password"
-        label="Create Password"
-        placeholder="Create Password"
+        label="Enter Password"
+        placeholder="Enter Password"
         {...register("password", {
           required: "Password is required",
           minLength: { value: 6, message: "Minimum 6 characters" },

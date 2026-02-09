@@ -8,7 +8,7 @@ const auth = {
         ID.unique(),
         email,
         password,
-        name
+        name,
       );
       if (!userAccount) return null;
       return this.login({ email, password });
@@ -38,6 +38,20 @@ const auth = {
       await account.deleteSession("current");
     } catch (error) {
       console.error("AuthService :: logout :: error", error.message);
+    }
+  },
+  async updatePassword(newPassword, currentPassword) {
+    try {
+      return await account.updatePassword(newPassword, currentPassword);
+    } catch (error) {
+      throw error;
+    }
+  },
+  async deleteAccount() {
+    try {
+      return await account.delete();
+    } catch (error) {
+      throw error;
     }
   },
 };

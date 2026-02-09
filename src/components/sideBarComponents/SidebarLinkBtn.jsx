@@ -31,7 +31,7 @@ const SidebarLinksBtn = () => {
       </NavLink>
       {/*  */}
       <NavLink
-        to=""
+        to="/setting-page"
         className={({ isActive }) =>
           `flex items-center hover:bg-[#497ddb] rounded py-1 px-2 gap-2 text-lg `
         }
